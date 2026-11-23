@@ -75,7 +75,10 @@ public enum ExecutionState
     Stopped,
 
     /// <summary>执行被中断（如进给保持）。</summary>
-    Interrupted
+    Interrupted,
+
+    /// <summary>紧急停止</summary>
+    Emergency
 }
 
 /// <summary>数控系统操作模式。</summary>
