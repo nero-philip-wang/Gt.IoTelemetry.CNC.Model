@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Gt.IoTelemetry.CNC.Model;
 
 /// <summary>机床抽象基类：聚合所有遥测单元。</summary>
@@ -51,6 +53,19 @@ public record GenericCncMachine : TelemetryComponent
     /// <summary>C 旋转轴（绕 Z），未配置时字段仍在、内容为空。</summary>
     public Axis? AxisC { get; init; }
 
+    [JsonIgnore]
+    public IList<Axis> Axes‌ { get; init; } = new List<Axis>() { };
+
     /// <summary>外挂传感器列表（振动、温度等额外测点）。</summary>
     public IReadOnlyList<Sensor> Sensors { get; init; } = new List<Sensor>();
+
+    public GenericCncMachine()
+    {
+        Axes‌.Add(AxisX);
+        Axes‌.Add(AxisY);
+        Axes‌.Add(AxisZ);
+        if (AxisA != null) Axes‌.Add(AxisA);
+        if (AxisB != null) Axes‌.Add(AxisB);
+        if (AxisC != null) Axes‌.Add(AxisC);
+    }
 }

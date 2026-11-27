@@ -4,9 +4,11 @@ namespace Gt.IoTelemetry.CNC.Model;
 public record HMI : TelemetryComponent
 {
     /// <summary>键盘/操作面板状态。</summary>
+    [MTDataItem]
     public KeyboardStatus? KeyboardStatus { get; init; }
 
     /// <summary>显示屏状态。</summary>
+    [MTDataItem]
     public ScreenStatus? ScreenStatus { get; init; }
 }
 
