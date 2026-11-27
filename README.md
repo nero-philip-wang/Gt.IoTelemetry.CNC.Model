@@ -4,7 +4,7 @@ CNC（数控机床）遥测数据模型类库。定义机床运行态的统一�
 
 ## 特性
 
-- 面向 `netstandard2.1`，可被 .NET Core 3.0+ / .NET 5+ / Xamarin / Unity（.NET Standard 2.1 兼容配置）等项目引用
+- 面向 `net8.0` / `net10.0`，可被 .NET 8 / .NET 10 项目引用
 - 全部模型使用 `record` + `init`，不可变、便于序列化
 - 属性分为两类，通过特性标记区分：
   - `[MTDataItem]` —— 动态遥测采样值（位置、转速、负载、温度等），随加工过程实时变化
@@ -92,11 +92,9 @@ dotnet build
 ├── Attribute/               MTAttribute / MTDataItem 标记特性
 ├── Components/              机床各组成部分的遥测模型
 ├── GenericCncMachine.cs     机床聚合根
-├── IsExternalInit.cs        netstandard2.x 下支持 record/init 的兼容垫片
-└── CNC.Model.csproj
+└── Gt.IoTelemetry.CNC.Model.csproj
 ```
 
 ## 备注
 
-- `IsExternalInit.cs` 是语言兼容垫片：`netstandard2.0/2.1` 运行时没有 `IsExternalInit` 类型，手动补齐后 `record` / `init` 语法才能编译，请勿删除。
-- 项目使用 `<LangVersion>latest</LangVersion>`：netstandard 默认语言版本较低，而代码使用了 C# 10 的文件级命名空间等特性。
+- 项目使用 `<LangVersion>latest</LangVersion>`，代码使用了 C# 10 的文件级命名空间等特性。
